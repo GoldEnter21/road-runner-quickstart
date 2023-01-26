@@ -24,8 +24,6 @@ public class RobotRelative extends Command {
         super(robot.drivetrain, game_pad1);
         this.drivetrain = robot.drivetrain;
         this.game_pad1 = game_pad1;
-        this.extension = robot.scoringMechanism.horizontalExtension;
-
     }
 
     @Override

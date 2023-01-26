@@ -23,9 +23,7 @@ public class Robot {
 	public Input gamepad1;
 	public Input gamepad2;
 	public Drivetrain drivetrain = new Drivetrain();
-	public MainScoringMechanism scoringMechanism = new MainScoringMechanism();
 	public FieldMap field = new FieldMap();
-	public Vision vision;
 
 	// print subsystem for testing
 	public PrintSubsystem1 print = new PrintSubsystem1();
@@ -34,8 +32,7 @@ public class Robot {
 
 	ArrayList<LynxModule> modules = new ArrayList<>() ;
 	public Robot(HardwareMap hwMap, OpMode opMode, Gamepad gamepad1, Gamepad gamepad2, Team team) {
-		vision = new Vision(team);
-		scheduler = new CommandScheduler(hwMap, drivetrain, dashboard, scoringMechanism, field, vision);
+		scheduler = new CommandScheduler(hwMap, drivetrain, dashboard, field);
 		this.gamepad1 = new Input(gamepad1, scheduler);
 		this.gamepad2 = new Input(gamepad2, scheduler);
 
@@ -61,8 +58,6 @@ public class Robot {
 		Dashboard.packet.put("game1 Delay", gamepad1.getDelayLength());
 		Dashboard.packet.put("game2 Delay", gamepad2.getDelayLength());
 		Dashboard.packet.put("drivetrain Delay",drivetrain.getDelayLength());
-		Dashboard.packet.put("scoring Delay",scoringMechanism.getDelayLength());
-		Dashboard.packet.put("distanceSensor Delay",scoringMechanism.getDelayLength());
 		Dashboard.packet.put("field delay",field.getDelayLength());
 	}
 

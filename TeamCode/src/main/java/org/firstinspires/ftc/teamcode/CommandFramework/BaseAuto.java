@@ -13,29 +13,17 @@ import org.firstinspires.ftc.teamcode.Robot.Commands.MiscCommands.DelayedCommand
 import org.firstinspires.ftc.teamcode.Robot.Commands.MiscCommands.MultipleCommand;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.Utils.Team;
-import org.firstinspires.ftc.teamcode.visionPipelines.SleeveDetection;
 
 public abstract class BaseAuto extends LinearOpMode {
 
 	protected Robot robot;
 	protected TrajectoryBuilder trajectoryBuilder;
 
-	protected SleeveDetection.ParkingPosition parkingPosition = SleeveDetection.ParkingPosition.CENTER;
-
 	@Override
 	public void runOpMode() {
-		PhotonCore.enable();
+//		PhotonCore.enable();
 		robot = new Robot(hardwareMap, Robot.OpMode.Auto, gamepad1, gamepad2, getTeam());
 		setRobotPosition();
-
-		while (!isStopRequested() && !opModeIsActive() && opModeInInit()) {
-			parkingPosition = robot.vision.getParkingPosition();
-			telemetry.addData("current parking position is: ", parkingPosition);
-			telemetry.update();
-		}
-
-		robot.vision.frontCam.destroy();
-
 
 		waitForStart();
 		robot.getScheduler().forceCommand(setupAuto(robot.getScheduler()));

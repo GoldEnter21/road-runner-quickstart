@@ -16,7 +16,7 @@ public class Drivetrain extends Subsystem {
 	protected double leftPower = 0;
 	protected double rightPower = 0;
 	SampleMecanumDrive drive;
-	Servo aBreak;
+//	Servo aBreak;
 	double breakActive = 0.5;
 	double breakReleased = 0.7;
 	BreakStates breakState = BreakStates.FREE;
@@ -25,20 +25,20 @@ public class Drivetrain extends Subsystem {
 	public void initAuto(HardwareMap hwMap) {
 		this.hwMap = hwMap;
 		drive = new SampleMecanumDrive(hwMap);
-		aBreak = hwMap.get(Servo.class, "break");
-		aBreak.setPosition(breakReleased);
+//		aBreak = hwMap.get(Servo.class, "break");
+//		aBreak.setPosition(breakReleased);
 	}
 	@Override
 	public void periodic() {
 		drive.update();
-		switch (breakState) {
-			case FREE:
-				aBreak.setPosition(breakReleased);
-				break;
-			case ACTIVATED:
-				aBreak.setPosition(breakActive);
-				break;
-		}
+//		switch (breakState) {
+//			case FREE:
+//				aBreak.setPosition(breakReleased);
+//				break;
+//			case ACTIVATED:
+//				aBreak.setPosition(breakActive);
+//				break;
+//		}
 	}
 
 
